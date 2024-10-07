@@ -1,8 +1,9 @@
 #include <pthread.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <unistd.h>
 
-#define NUM_THREADS 2
+#define NUM_THREADS sysconf(_SC_NPROCESSORS_CONF)
 
 void *f(void *arg) {
   long id = *(long *)arg;
