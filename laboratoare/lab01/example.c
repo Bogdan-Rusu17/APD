@@ -7,7 +7,9 @@
 
 void *f(void *arg) {
   long id = *(long *)arg;
-  printf("Hello World din thread-ul %ld!\n", id);
+  for (int i = 0; i < 100; i++) {
+    printf("Hello World din thread-ul %ld la iteratia %ld!\n", id, i);
+  }
   pthread_exit(NULL);
 }
 
