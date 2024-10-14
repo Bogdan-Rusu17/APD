@@ -23,6 +23,7 @@ void *task(void *arg) {
   for (int i = interval.start; i < interval.end; i++) {
     sums[interval.id] += arr[i];
   }
+  //printf("%d\n", sums[interval.id]);
 
   pthread_exit(NULL);
 }
@@ -57,6 +58,7 @@ int main(int argc, char *argv[]) {
 
     interval.start = i * (double)array_size / num_threads;
     interval.end = (i + 1) * ((double)array_size / num_threads);
+    printf("%d %d\n", interval.start, interval.end);
     interval.id = i;
 
     if (interval.end > array_size)
@@ -69,12 +71,12 @@ int main(int argc, char *argv[]) {
   for (int i = 0; i < num_threads; i++) {
     pthread_join(threads[i], &status);
   }
-  int sum = 0;
-  for (int i = 0; i < num_threads; i++) {
-    sum += sums[i];
-  }
+  // int sum = 0;
+  // for (int i = 0; i < num_threads; i++) {
+  //   sum += sums[i];
+  // }
 
-  printf("%d\n", sum);
+  // printf("%d\n", sum);
 
   // for (int i = 0; i < array_size; i++) {
   //   arr[i] += 100;

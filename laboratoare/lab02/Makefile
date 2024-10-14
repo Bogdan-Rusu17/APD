@@ -1,5 +1,5 @@
 build:
-	gcc mutex.c -o mutex -lpthread -Wall
+	gcc mutex.c -o mutex -lpthread -Wall -g
 	gcc barrier.c -o barrier -lpthread -Wall
 	gcc multiply_seq.c -o multiply_seq -lpthread -Wall
 	gcc multiply_outer.c -o multiply_outer -lpthread -Wall

@@ -13,6 +13,16 @@ int **c;
 void *thread_function(void *arg)
 {
 	int thread_id = *(int *)arg;
+	int left = thread_id * (double)N / P;
+	int right = N < (thread_id + 1) * (double)N / P ? N : (thread_id + 1) * (double)N / P;
+
+	for (int i = left; i < right; i++) {
+		for (int j = 0; j < N; j++) {
+			for (int k = 0; k < N; k++) {
+				c[i][j] += a[i][k] * b[k][j];
+			}
+		}
+	}
 
 	/*
 	for (i = 0; i < N; i++) {
