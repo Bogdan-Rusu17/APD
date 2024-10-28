@@ -3,6 +3,7 @@ package bug3;
 /**
  * Why is value set correct even though we use different locks in
  * different threads?
+ * because a and b refer to the same memory location, both point to the string 'LOCK'
  *
  * Modify a single line of code to obtain the expected behaviour (race condition since the monitors are different).
  */
@@ -24,7 +25,7 @@ public class MyThread implements Runnable {
                     value = value + 3;
             }
         } else {
-            synchronized (b) {
+            synchronized (a) {
                 for (int i = 0; i < Main.N; i++)
                     value = value + 3;
             }

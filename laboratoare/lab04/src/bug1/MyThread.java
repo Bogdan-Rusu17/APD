@@ -10,7 +10,10 @@ public class MyThread implements Runnable {
 
     @Override
     public void run() {
-        for (int i = 0; i < Main.N; i++)
-            value = value + 3;
+        for (int i = 0; i < Main.N; i++) {
+            synchronized (MyThread.class) {
+                value = value + 3;
+            }
+        }
     }
 }

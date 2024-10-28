@@ -16,10 +16,14 @@ public class Singleton {
     }
 
     public static Singleton getInstance() {
-        if (instance == null) {
-            System.out.println("Creating only one instance");
-            instance = new Singleton();
-            ++numberOfInstances;
+        synchronized (Singleton.class) {
+            if (instance == null) {
+                synchronized (Singleton.class) {
+                    System.out.println("Creating only one instance");
+                    instance = new Singleton();
+                    ++numberOfInstances;
+                }
+            }
         }
         return instance;
     }
